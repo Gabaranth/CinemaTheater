@@ -38,7 +38,6 @@ ob_start();
             <span><?php 
                 if (!empty($erreurs["recherche"])) {
                     echo $erreurs["recherche"];
-                    var_dump($erreurs["recherche"]);
                 }
             ?></span>
             <button type="submit"><img src="./img/loupe.png" alt=""  width="30" height="24"></button>

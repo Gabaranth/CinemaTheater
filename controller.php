@@ -165,8 +165,35 @@ function control_form_fields_ajout($image, $cat, $pitch){
 }
 
 function ajouter_film_bdd($titre, $sortie, $image, $cat, $pitch){
-
     session_start();
+
+    $image = "";
+
+    function nom_image($image){
+
+        if (isset($_FILES["affiche"])) {
+            $tmp_Name= $_FILES['affiche']['tmp_name'];
+            $name= $_FILES['affiche']['name'];
+            $type= $_FILES['affiche']['type'];
+            $error= $_FILES['affiche']['error'];
+            $size= $_FILES['affiche']['size'];
+
+            $scindeName = explode('.', $name);
+
+            $extFichier = strtolower($scindeName[1]);
+
+            $extAuto = ['jpg', 'jpeg', 'gif', 'png'];
+
+            if (in_array($extFichier, $extAuto) && $error == 0) {
+                
+                move_uploaded_file($tmp_Name,'./img/'.$name);
+            } else {
+                $erreurs["image"] = "Mauvaise extensions de fichier ou fichier corompu !";
+            }
+
+            return $image;
+        }
+    }
 
     inserer_film($titre, $sortie, $image, $cat, $pitch);
 
