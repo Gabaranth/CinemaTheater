@@ -1,6 +1,5 @@
 <?php 
 $title = "Connexion administrateur";
-var_dump($_SESSION['ticket']);
 ob_start();
 ?>
 <header>

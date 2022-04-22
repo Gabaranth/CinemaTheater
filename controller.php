@@ -91,6 +91,7 @@ function recherche_film($title){
     $key = "5683e0da5ac9e167c7bdefc13769c14e";
     
     $title = $_POST["recherche"];
+    $title = urlencode($title);
     
     //Consomation de l'API TMDB pour récupéré la liste de film à partir d'un titre de film.
     $json = file_get_contents("https://api.themoviedb.org/3/search/movie?api_key=$key&language=fr&query=$title");
@@ -130,9 +131,6 @@ function control_form_fields_recherche($title){
 }
 
 function vue_formulaire_ajout(){
-    
-    $titre = urldecode($_GET["titre"]);
-    $pitch = urldecode($_GET["pitch"]);
 
     session_start();
 

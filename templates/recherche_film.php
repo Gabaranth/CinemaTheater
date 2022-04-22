@@ -38,7 +38,6 @@ ob_start();
             <span><?php 
                 if (!empty($erreurs["recherche"])) {
                     echo $erreurs["recherche"];
-                    var_dump($erreurs["recherche"]);
                 }
             ?></span>
             <button type="submit"><img src="./img/loupe.png" alt=""  width="30" height="24"></button>
@@ -51,9 +50,11 @@ ob_start();
             } else {
                 $total = count($result['results']);
                 do {
-                    $titre = $result['results'][$inc]['original_title'];
+                    $titre = $result['results'][$inc]['title'];
                     $date = $result['results'][$inc]['release_date'];
                     $pitch = $result['results'][$inc]['overview'];
+                    $id = $result['results'][$inc]['id'];
+
 
                     echo "<div class='film'>";
                     echo "<h1 class='text-center'>".$titre."</h1>";
@@ -65,7 +66,7 @@ ob_start();
                     echo "<div class='mt-3'>";
                     echo "<p>".$pitch."</p>";
                     echo "</div>";
-                    echo "<a class='text-center'href=index.php?action=ajout&titre=".urlencode($titre)."&date=$date&pitch=".urlencode($pitch).">Ajouter le film</a>";
+                    echo "<a class='text-center'href=index.php?action=ajout&id=".$id.">Ajouter le film</a>";
                     echo "</div>";
                     $inc++;
                 } while ($inc <= $total-1);
