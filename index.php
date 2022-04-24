@@ -66,8 +66,7 @@ try{
         // Page d'accés pour le formulaire d'ajout du film rechercher 
         if ($_GET["action"] == "ajout") {
 
-            appelerWebServiceID($_GET["id"]);
-            vue_formulaire_ajout();
+            vue_formulaire_ajout($_GET["id"]);
             
         }
 

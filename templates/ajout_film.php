@@ -1,6 +1,6 @@
 <?php 
 $title = "Administrateur Cinema Theater";
-
+var_dump(strval($dataFilm["titre"]));
 ob_start();
 ?>
 <header>
@@ -36,10 +36,10 @@ ob_start();
     <div>
         <form action="index.php?action=bdd" method="POST">
         <p>Titre du film</p>
-        <input type="text" name="titre" id="titre" value=<?php echo strval($titre) ?>>
+        <input type="text" name="titre" id="titre" value=<?php echo strval($dataFilm["titre"]) ?>>
         <br>
         <p>Année de sortie</p>
-        <input type="text" name="year" id="year" value=<?php echo $_GET["date"]?>>
+        <input type="text" name="year" id="year" value=<?php echo $dataFilm["date_sortie"]?>>
         <br>
         <p>Affiche du film</p><span><?php if (!empty($erreurs["image"])) {
             echo $erreurs["image"];
@@ -61,7 +61,7 @@ ob_start();
         <p>Pitch du film</p><span><?php if (!empty($erreurs["pitch"])) {
             echo $erreurs["pitch"];
         } ?></span>
-        <input type="text" name="pitch" id="pitch" value=<?php echo $_GET["pitch"] ?>>
+        <input type="textarea" name="pitch" id="pitch" value=<?php echo $dataFilm["pitch"] ?>>
         <br>
         <input type="reset" value="annuler"><input type="submit" name="bdd" value="envoyer">
         </form>
