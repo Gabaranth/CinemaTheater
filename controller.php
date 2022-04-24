@@ -106,6 +106,28 @@ function recherche_film($title){
 
 }
 
+function appelerWebServiceID($id){
+    
+    //API Key TMBD
+    $key = "5683e0da5ac9e167c7bdefc13769c14e";
+
+    $wsdl = file_get_contents("https://api.themoviedb.org/3/movie/$id?api_key=$key&language=fr-FR");
+    $wsdl = json_decode($wsdl);
+    var_dump($wsdl);
+  
+    $dataFilm = array();
+  
+    $dataFilm["date_sortie"] = date("Y", strtotime($wsdl->{'release_date'}));
+    $dataFilm["titre"]  = $wsdl->{'title'};
+    $dataFilm["pitch"]  = $wsdl->{'overview'};
+    $dataFilm["photo"]  = $wsdl->{'poster_path'};
+    $dataFilm["id"]     = $wsdl->{'id'};
+  
+  
+  return $dataFilm;
+  
+  }
+
 function control_form_fields_recherche($title){
 
     session_start();
